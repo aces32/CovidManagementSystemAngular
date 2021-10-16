@@ -5,9 +5,11 @@ import { environment } from 'src/environments/environment';
 import { BookedCovidTest } from 'src/app/models/BookedCovidTest';
 import { IndividualBookingInformation } from 'src/app/models/IndividualBookingInformation';
 import { map } from 'rxjs/operators';
+import { CancelBookingRequest } from 'src/app/models/CancelBookingRequest';
+import { CancelBooking } from 'src/app/models/CancelBooking';
 
 const apiUrl = `${environment.BASE_URL}${environment.Individual_API}`;
-let httpOptions = {
+const httpOptions = {
   headers: new HttpHeaders({
     "Content-Type": "application/json; charset=utf-8"
   })
@@ -31,5 +33,10 @@ export class BookingService {
     return this.http.get<IndividualBookingInformation>(`${apiUrl}${"/getIndividualInfoByMobileNoAndEmail?emailAddress="}
                 ${emailAddress}${"&mobileNumber="}${mobileNumber}`, httpOptions).pipe(
                 );
+  }
+
+  cancelBookings(cancelBookingRequest: CancelBookingRequest): Observable<CancelBooking>  {
+    console.log(apiUrl);
+    return this.http.put<any>(`${apiUrl}${"/CancelBookedTest"}`, cancelBookingRequest, httpOptions).pipe();
   }
 }

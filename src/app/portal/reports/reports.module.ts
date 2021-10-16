@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { ReportsRoutingModule } from './reports.routing';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ReportsComponent } from './container/reports.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 
@@ -12,7 +13,8 @@ import { ReportsComponent } from './container/reports.component';
     ReportsRoutingModule,
     CommonModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgbModule
   ]
 })
 export class ReportsModule { }

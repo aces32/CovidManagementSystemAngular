@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Observable } from 'rxjs';
-import { BookingsReport } from 'src/app/models/BookingsReport';
+import { BookingsReport, Individual } from 'src/app/models/BookingsReport';
 import { AdministratorService } from 'src/app/services/administrator-service/administrator.service';
 
 @Component({
@@ -14,7 +15,10 @@ export class ReportsComponent implements OnInit {
   form: FormGroup;
   showLoader: boolean;
   bookingReports$:Observable<any>;
-  constructor(private administratorService: AdministratorService) { }
+  bookingReportsData:Individual[];
+  closeModal: string;
+  constructor(private administratorService: AdministratorService,
+              private modalService: NgbModal) { }
 
   ngOnInit(): void {
     this.form = new FormGroup({
@@ -42,7 +46,9 @@ export class ReportsComponent implements OnInit {
 
 
   submitForm(){
-    this.form.markAllAsTouched();
+    if(this.form.invalid){
+      return this.form.markAllAsTouched();
+    }
     this.showLoaders();
 
     this.bookingReports$ = this.administratorService.GetBookingsReports(this.form.value.bookingStartDates, 
@@ -55,5 +61,25 @@ export class ReportsComponent implements OnInit {
 
   viewIndividualData(bookingReport: BookingsReport){
     console.log(bookingReport)
+  }
+
+  triggerModal(content, bookingReport: BookingsReport) {
+
+    this.bookingReportsData = bookingReport.individuals
+    this.modalService.open(content, {centered: true,backdrop: 'static'}).result.then((res) => {
+      this.closeModal = `Closed with: ${res}`;
+    }, (res) => {
+      this.closeModal = `Dismissed ${this.getDismissReason(res)}`;
+    });
+  }
+
+  private getDismissReason(reason: any): string {
+    if (reason === ModalDismissReasons.ESC) {
+      return 'by pressing ESC';
+    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
+      return 'by clicking on a backdrop';
+    } else {
+      return  `with: ${reason}`;
+    }
   }
 }

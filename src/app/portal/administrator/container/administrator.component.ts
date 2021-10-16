@@ -62,8 +62,9 @@ export class AdministratorComponent implements OnInit {
 
 
   submitForm(){
-    this.form.markAllAsTouched();
-    
+    if(this.form.invalid){
+      return this.form.markAllAsTouched();
+    }
     this.showLoaders();
 
     const allocateBookingSpaceRequest: AllocateBookingSpaceRequest = {

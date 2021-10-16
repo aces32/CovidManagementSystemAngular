@@ -81,8 +81,11 @@ export class IndividualComponent implements OnInit {
   }
 
   submitForm(){
-    this.form.markAllAsTouched();
-    
+
+    if(this.form.invalid){
+      return this.form.markAllAsTouched();
+    }
+
     this.showLoaders();
 
     const bookCovidTestRequest: BookCovidTestRequest = {
@@ -96,8 +99,6 @@ export class IndividualComponent implements OnInit {
         testType: this.form.value.testType
       }
     }
-
-    console.log(JSON.stringify(bookCovidTestRequest))
 
     this.bookingService.submitBookedCovidTest(bookCovidTestRequest).subscribe((res: BookedCovidTest) =>{
       console.log(res);

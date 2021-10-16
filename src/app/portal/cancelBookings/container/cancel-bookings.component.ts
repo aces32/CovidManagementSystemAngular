@@ -2,31 +2,25 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { Observable } from 'rxjs';
+import { CancelBooking } from 'src/app/models/CancelBooking';
+import { CancelBookingRequest } from 'src/app/models/CancelBookingRequest';
 import { IndividualBookingInformation } from 'src/app/models/IndividualBookingInformation';
-import { SetTestOutcome } from 'src/app/models/SetTestOutcome';
-import { SetTestOutcomeRequest } from 'src/app/models/SetTestOutcomeRequest';
 import { BookingService } from 'src/app/services/booking-service/booking.service';
-import { IndividualLabsService } from 'src/app/services/individualLabs-Service/individual-labs.service';
 
 @Component({
-  selector: 'app-individual-labs',
-  templateUrl: './individual-labs.component.html',
-  styleUrls: ['./individual-labs.component.scss']
+  selector: 'app-cancel-bookings',
+  templateUrl: './cancel-bookings.component.html',
+  styleUrls: ['./cancel-bookings.component.scss']
 })
-export class IndividualLabsComponent implements OnInit {
+export class CancelBookingsComponent implements OnInit {
 
   showLoader: boolean;
   disableButton: boolean = false;
   form: FormGroup;
   individualBookingInformation$:Observable<IndividualBookingInformation>; 
-  selectedOutcome: string;
-  selectedOutcomes = [
-    { name: "positive", value: "positive" },
-    { name: "negative", value: "positve" }
-  ] 
 
   constructor(private bookingService: BookingService,
-    private toastr: ToastrService, private individualLabsService: IndividualLabsService) { }
+    private toastr: ToastrService) { }
 
   ngOnInit(): void {
     this.form = new FormGroup({
@@ -65,24 +59,25 @@ export class IndividualLabsComponent implements OnInit {
     this.disableLoaders(); 
   }
 
-  cancelTestOutcome(): void{
+  
+  goBacktoForm(): void{
     this.individualBookingInformation$ = null;
     this.form.reset();
   }
 
-  setTestOutcome = (individualLabId: number, selectedOutcome: string): void => {
-    console.log({individualLabId, selectedOutcome})
+  setTestOutcome = (individualEmailAddress: string, individualMobileNumber: string): void => {
+    console.log({individualEmailAddress, individualMobileNumber})
 
-    const setTestOutcomeRequest: SetTestOutcomeRequest = {
-      individualLabId: individualLabId,
-      testOutCome: selectedOutcome,
-      testCompleted: true
+    const setTestOutcomeRequest: CancelBookingRequest = {
+      individualEmailAddress: individualEmailAddress,
+      individualMobileNumber: individualMobileNumber,
+      individualBookingStatus: false
     }
 
-    this.individualLabsService.setTestOutCome(setTestOutcomeRequest).subscribe((res: SetTestOutcome) =>{
+    this.bookingService.cancelBookings(setTestOutcomeRequest).subscribe((res: CancelBooking) =>{
       this.form.reset();
       this.individualBookingInformation$ = null;
-      this.toastr.success("Test outcome has successfully been set")
+      this.toastr.success("booking has been canceled")
     },
 
     (error) => {

@@ -7,7 +7,7 @@ import { BookingsReport } from 'src/app/models/BookingsReport';
 import { environment } from 'src/environments/environment';
 
 const apiUrl = `${environment.BASE_URL}${environment.Administrator_API}`;
-let httpOptions = {
+const httpOptions = {
   headers: new HttpHeaders({
     "Content-Type": "application/json; charset=utf-8"
   })

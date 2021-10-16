@@ -58,12 +58,12 @@
                             </thead>
                             <tbody>
                               <tr *ngFor="let bookingReport of bookingReports$ | async">
-                                <td>{{bookingReport.bookingDates}}</td>
+                                <td>{{bookingReport.bookingDates | date}}</td>
                                 <td>{{bookingReport.capacity}}</td>
                                 <td>{{bookingReport.spaceAllocated}}</td>
                                 <td>{{bookingReport.location.locationName}}</td>
                                 <td>
-                                    <button class="btn btn-primary pull-right pd-3 mg-5" (click)="viewIndividualData(bookingReport)">
+                                    <button class="btn btn-primary pull-right pd-3 mg-5" (click)="triggerModal(modalData, bookingReport)">
                                         View booked Individual data
                                         <i class="fa fa-spinner fa-spin fs-22 float-r" *ngIf="showLoader"></i>
                                       </button>
@@ -79,3 +79,47 @@
         </div>
       </div>
   </div>
+
+    <ng-template #modalData let-modal>
+        <div class="modal-header">
+          <h4 class="modal-title" id="modal-basic-title">Booking Informations</h4>
+          <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <div *ngIf="bookingReportsData.length == 0">
+                <label class="bmd-label-floating">No booking was placed on this date</label>
+            </div>
+            <div class="row pd-10" *ngIf="bookingReportsData.length > 0">
+                <div class="col-md-12">
+                    <table class="table">
+                        <thead class="thead-dark">
+                          <tr>
+                            <th scope="col">First Name</th>
+                            <th scope="col">Last Name</th>
+                            <th scope="col">Email Adress</th>
+                            <th scope="col">Mobile Number</th>
+                            <th scope="col">Test Type</th>
+                            <th scope="col">Test Outcome</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr *ngFor="let individual of bookingReportsData">
+                            <td>{{individual?.individualFirstName}}</td>
+                            <td>{{individual?.individualLastName}}</td>
+                            <td>{{individual?.individualEmailAddress}}</td>
+                            <td>{{individual?.individualMobileNumber}}</td>
+                            <td>{{individual?.individualLab.testType}}</td>
+                            <td>{{individual?.individualLab.testOutCome}}</td>
+                          </tr>
+                      </table>
+                      
+                </div>
+              </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" (click)="modal.close('Save click')">Close</button>
+        </div>
+      </ng-template>
+

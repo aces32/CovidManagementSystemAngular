@@ -19,6 +19,10 @@ const routes: Routes = [
         loadChildren: () => import('./administrator/administrator.module').then(m => m.AdministratorModule)
       },
       {
+        path: 'cancelBookings',
+        loadChildren: () => import('./cancelBookings/cancel-bookings.module').then(m => m.CancelBookingsModule)
+      },
+      {
         path: 'individuals',
         loadChildren: () => import('./individuals/individual.module').then(m => m.IndividualModule)
       },

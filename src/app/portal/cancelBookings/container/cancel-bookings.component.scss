@@ -5,16 +5,15 @@
   .text-label {
     color: grey;
   }
-
+  
   .pd-10{
       padding: 10px;
   }
   
-  .modal-custom{
-    max-width: 1000px !important
-}
-
-::ng-deep .modal-dialog{
-    max-width: 1200px !important;
-    width: 1200px;
+  .pd3{
+    padding: 3px;
+  }
+  
+  .mg-5{
+    margin: 5px;
   }

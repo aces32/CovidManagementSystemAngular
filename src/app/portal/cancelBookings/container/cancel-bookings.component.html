@@ -1,5 +1,5 @@
 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-    <h1 class="h2">Update Individual Test Outcome</h1>
+    <h1 class="h2">Cancel Bookings</h1>
   </div>
 
   <div class="view-portfolio">
@@ -8,7 +8,7 @@
           <div class="col-md-12">
             <div class="card">
               <div class="card-header card-header-primaryW">
-                <h2 class="card-title">Set Individual test outcome</h2>
+                <h2 class="card-title">Cancel Booked Covid Test</h2>
                 <p class="card-category">input individual details</p>
               </div>
               <div class="card-body">
@@ -55,7 +55,6 @@
                               <th scope="col">Email Adress</th>
                               <th scope="col">Mobile Number</th>
                               <th scope="col">Test Type</th>
-                              <th scope="col">Set Test Outcome</th>
                             </tr>
                           </thead>
                           <tbody>
@@ -66,20 +65,12 @@
                               <td>{{individualBooking.individualMobileNumber}}</td>
                               <td>{{individualBooking.individualLab.testType}}</td>
                               <td>
-                                <select [(ngModel)]="selectedOutcome">
-                                  <option disabled>Test outcome</option>
-                                  <option *ngFor="let selectedOutcome of selectedOutcomes">
-                                     {{selectedOutcome.name}}
-                                  </option>
-                               </select>
-                              </td>
-                              <td>
-                                <button class="btn btn-primary pull-right pd-3 mg-5" (click)="cancelTestOutcome()">
-                                  cancel
+                                <button class="btn btn-primary pull-right pd-3 mg-5" (click)="goBacktoForm()">
+                                  back
                                   <i class="fa fa-spinner fa-spin fs-22 float-r" *ngIf="showLoader"></i>
                                 </button>
-                                  <button class="btn btn-primary pull-right pd-3 mg-5" (click)="setTestOutcome(individualBooking.individualLab.individualLabId, selectedOutcome)">
-                                    Set Outcome
+                                  <button class="btn btn-primary pull-right pd-3 mg-5" (click)="setTestOutcome(individualBooking.individualEmailAddress, individualBooking.individualMobileNumber)">
+                                    Cancel Booking
                                     <i class="fa fa-spinner fa-spin fs-22 float-r" *ngIf="showLoader"></i>
                                   </button>
                               </td>
