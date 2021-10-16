@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { Observable } from 'rxjs';
 import { Administrator } from 'src/app/models/Administrator';
 import { AllocateBookingSpaceRequest } from 'src/app/models/AllocateBookingSpaceRequest';
 import { BookingsReport } from 'src/app/models/BookingsReport';
