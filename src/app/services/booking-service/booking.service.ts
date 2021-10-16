@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { BookedCovidTest } from 'src/app/models/BookedCovidTest';
 import { IndividualBookingInformation } from 'src/app/models/IndividualBookingInformation';
+import { map } from 'rxjs/operators';
 
 const apiUrl = `${environment.BASE_URL}${environment.Individual_API}`;
 let httpOptions = {
@@ -28,6 +29,7 @@ export class BookingService {
   GetIndividualInfoByMobileNoAndEmail(emailAddress: string, mobileNumber: string): Observable<IndividualBookingInformation>  {
     console.log(apiUrl);
     return this.http.get<IndividualBookingInformation>(`${apiUrl}${"/getIndividualInfoByMobileNoAndEmail?emailAddress="}
-                ${emailAddress}${"&mobileNumber="}${mobileNumber}`, httpOptions).pipe();
+                ${emailAddress}${"&mobileNumber="}${mobileNumber}`, httpOptions).pipe(
+                );
   }
 }
