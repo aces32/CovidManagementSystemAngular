@@ -1,67 +1,111 @@
-<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-    <h1 class="h2">Administrator</h1>
-  </div>
+<div
+  class="
+    d-flex
+    justify-content-between
+    flex-wrap flex-md-nowrap
+    align-items-center
+    pt-3
+    pb-2
+    mb-3
+    border-bottom
+  "
+>
+  <h1 class="h2">Administrator</h1>
+</div>
 
-  <div class="view-portfolio">
-    <div class="container-fluid">
-        <div class="row">
-          <div class="col-md-12">
-            <div class="card">
-              <div class="card-header card-header-primaryW">
-                <h2 class="card-title">Allocate Booking Space</h2>
-                <p class="card-category">Booking space details</p>
-              </div>
-              <div class="card-body">
-                <form method="POST" [formGroup]="form" (ngSubmit)="submitForm()">
-                    <div class="row pd-10">
-                        <div class="col-md-12">
-                          <div class="form-group">
-                            <label class="bmd-label-floating">Location</label>
-                            <select formControlName="location" class="form-control" >
-                                <option disabled>Location</option>
-                                <option>Choose Location</option>
-                                <option *ngFor="let location of locations$ | async" [value]="location.locationID">{{location.locationName}}</option>
-                            </select>
-                            <div class="small alert alert-danger" *ngIf="location.touched && location.invalid">
-                            <span *ngIf="!!location.errors.required">please select a location</span>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-
-                  <div class="row pd-10">
-                    <div class="col-md-12">
-                      <div class="form-group">
-                        <label class="bmd-label-floating">Capacity</label>
-                        <input formControlName="capacity" type="number" class="form-control" placeholder="input capacity" >
-                        <div class="small alert alert-danger" *ngIf="capacity.touched && capacity.invalid">
-                            <span *ngIf="!!capacity.errors.required">please input the location total capacity</span>
-                            </div>
-                      </div>
+<div class="view-portfolio">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-header card-header-primaryW">
+            <h2 class="card-title">Allocate Booking Space</h2>
+            <p class="card-category">Booking space details</p>
+          </div>
+          <div class="card-body">
+            <form method="POST" [formGroup]="form" (ngSubmit)="submitForm()">
+              <div class="row pd-10">
+                <div class="col-md-12">
+                  <div class="form-group">
+                    <label class="bmd-label-floating">Location</label>
+                    <select formControlName="location" class="form-control">
+                      <option disabled>Location</option>
+                      <option>Choose Location</option>
+                      <option
+                        *ngFor="let location of locations$ | async"
+                        [value]="location.locationID"
+                      >
+                        {{ location.locationName }}
+                      </option>
+                    </select>
+                    <div
+                      class="small alert alert-danger"
+                      *ngIf="location.touched && location.invalid"
+                    >
+                      <span *ngIf="!!location.errors.required"
+                        >please select a location</span
+                      >
                     </div>
                   </div>
+                </div>
+              </div>
 
-                  <div class="row pd-10">
-                    <div class="col-md-12">
-                      <div class="form-group">
-                        <label class="bmd-label-floating">Booking Date</label>
-                        <input type="date" formControlName="bookingDates" class="form-control">
-                        <div class="small alert alert-danger" *ngIf="bookingDates.touched && bookingDates.invalid">
-                            <span *ngIf="!!bookingDates.errors.required">please input a booking date</span>
-                            </div>
-                      </div>
+              <div class="row pd-10">
+                <div class="col-md-12">
+                  <div class="form-group">
+                    <label class="bmd-label-floating">Capacity</label>
+                    <input
+                      formControlName="capacity"
+                      type="number"
+                      class="form-control"
+                      placeholder="input capacity"
+                    />
+                    <div
+                      class="small alert alert-danger"
+                      *ngIf="capacity.touched && capacity.invalid"
+                    >
+                      <span *ngIf="!!capacity.errors.required"
+                        >please input the location total capacity</span
+                      >
                     </div>
                   </div>
-
-                  <button class="btn btn-primary pull-right pd-10">
-                    Allocate Booking
-                    <i class="fa fa-spinner fa-spin fs-22 float-r" *ngIf="showLoader"></i>
-                  </button>
-                  <div class="clearfix"></div>
-                </form>
+                </div>
               </div>
-            </div>
+
+              <div class="row pd-10">
+                <div class="col-md-12">
+                  <div class="form-group">
+                    <label class="bmd-label-floating">Booking Date</label>
+                    <input
+                      type="date"
+                      formControlName="bookingDates"
+                      class="form-control"
+                    />
+                    <div
+                      class="small alert alert-danger"
+                      *ngIf="bookingDates.touched && bookingDates.invalid"
+                    >
+                      <span *ngIf="!!bookingDates.errors.required"
+                        >please input a booking date</span
+                      >
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <button class="btn btn-primary pull-right pd-10">
+                Allocate Booking
+                <i
+                  class="fa fa-spinner fa-spin fs-22 float-r"
+                  *ngIf="showLoader"
+                ></i>
+              </button>
+              <div class="clearfix"></div>
+            </form>
           </div>
         </div>
       </div>
+    </div>
   </div>
+</div>
+

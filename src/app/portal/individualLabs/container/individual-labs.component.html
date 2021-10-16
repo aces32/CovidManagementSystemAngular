@@ -44,6 +44,55 @@
                   </button>
                   <div class="clearfix"></div>
                 </form>
+
+                <div class="row pd-10" *ngIf="individualBookingInformation$ != null">
+                  <div class="col-md-12">
+                      <table class="table">
+                          <thead class="thead-dark">
+                            <tr>
+                              <th scope="col">First Name</th>
+                              <th scope="col">Last Name</th>
+                              <th scope="col">Email Adress</th>
+                              <th scope="col">Mobile Number</th>
+                              <th scope="col">Test Type</th>
+                              <th scope="col">Set Test Outcome</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr  *ngIf="individualBookingInformation$ | async as individualBooking">
+                              <td>{{individualBooking.individualFirstName}}</td>
+                              <td>{{individualBooking.individualLastName}}</td>
+                              <td>{{individualBooking.individualEmailAddress}}</td>
+                              <td>{{individualBooking.individualMobileNumber}}</td>
+                              <td>{{individualBooking.individualLab.testType}}</td>
+                              <td>
+                                <select [(ngModel)]="selectedOutcome">
+                                  <option disabled>Test outcome</option>
+                                  <option *ngFor="let selectedOutcome of selectedOutcomes">
+                                     {{selectedOutcome.name}}
+                                  </option>
+                               </select>
+                                <!-- <select >
+                                <option disabled>Test outcome</option>
+                                <option>Choose Test outcome</option>
+                                <option>positive</option>
+                                <option>negative</option>
+                                </select> -->
+                              </td>
+                              <td>
+                                <button class="btn btn-primary pull-right pd-3 mg-5" (click)="cancelTestOutcome()">
+                                  cancel
+                                  <i class="fa fa-spinner fa-spin fs-22 float-r" *ngIf="showLoader"></i>
+                                </button>
+                                  <button class="btn btn-primary pull-right pd-3 mg-5" (click)="setTestOutcome(individualBooking.individualLab.individualLabId, selectedOutcome)">
+                                    Set Outcome
+                                    <i class="fa fa-spinner fa-spin fs-22 float-r" *ngIf="showLoader"></i>
+                                  </button>
+                              </td>
+                            </tr>
+                        </table>
+                  </div>
+                </div>
               </div>
             </div>
           </div>

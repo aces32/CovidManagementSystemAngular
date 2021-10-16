@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
+import { BookingsReport } from 'src/app/models/BookingsReport';
 import { AdministratorService } from 'src/app/services/administrator-service/administrator.service';
 
 @Component({
@@ -12,7 +13,7 @@ export class ReportsComponent implements OnInit {
   
   form: FormGroup;
   showLoader: boolean;
-  bookingReport$:Observable<any>;
+  bookingReports$:Observable<any>;
   constructor(private administratorService: AdministratorService) { }
 
   ngOnInit(): void {
@@ -41,14 +42,18 @@ export class ReportsComponent implements OnInit {
 
 
   submitForm(){
-    console.log(JSON.stringify(this.form.value))
-    if (this.form.invalid) {
-      return this.form.markAllAsTouched();
-    }
+    this.form.markAllAsTouched();
     this.showLoaders();
 
-    this.bookingReport$ = this.administratorService.GetBookingsReports(this.form.value.bookingStartDates, 
+    this.bookingReports$ = this.administratorService.GetBookingsReports(this.form.value.bookingStartDates, 
                       this.form.value.bookingEndDates, "1", "60");
-                      this.bookingReport$.subscribe(res => console.log(res))
+                      this.bookingReports$.subscribe(res => console.log(res))
+                      
+    this.disableLoaders(); 
+                  
+  }
+
+  viewIndividualData(bookingReport: BookingsReport){
+    console.log(bookingReport)
   }
 }

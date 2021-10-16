@@ -81,13 +81,11 @@ export class IndividualComponent implements OnInit {
   }
 
   submitForm(){
-    console.log(JSON.stringify(this.form.value))
-    if (this.form.invalid) {
-      return this.form.markAllAsTouched();
-    }
+    this.form.markAllAsTouched();
+    
     this.showLoaders();
 
-    var bookCovidTestRequest: BookCovidTestRequest = {
+    const bookCovidTestRequest: BookCovidTestRequest = {
       individualEmailAddress: this.form.value.individualEmailAddress,
       individualFirstName: this.form.value.individualFirstName,
       individualLastName: this.form.value.individualLastName,

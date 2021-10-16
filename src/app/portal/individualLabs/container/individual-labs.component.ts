@@ -15,7 +15,12 @@ export class IndividualLabsComponent implements OnInit {
   showLoader: boolean;
   disableButton: boolean = false;
   form: FormGroup;
-  individualBookingInformation$:Observable<IndividualBookingInformation>;  
+  individualBookingInformation$:Observable<IndividualBookingInformation>; 
+  selectedOutcome: string;
+  selectedOutcomes = [
+    { name: "positive", value: "positive" },
+    { name: "negative", value: "positve" }
+  ] 
 
   constructor(private bookingService: BookingService,
     private toastr: ToastrService) { }
@@ -35,17 +40,17 @@ export class IndividualLabsComponent implements OnInit {
     return this.form.get('individualMobileNumber');
   }
 
-  showLoaders(){
+  showLoaders(): void{
     this.showLoader = true
     this.disableButton = true
   }
 
-  disableLoaders(){
+  disableLoaders(): void{
     this.showLoader = false
     this.disableButton = false;
   }
 
-  submitForm(){
+  submitForm(): void{
     console.log(JSON.stringify(this.form.value))
     if (this.form.invalid) {
       return this.form.markAllAsTouched();
@@ -56,6 +61,16 @@ export class IndividualLabsComponent implements OnInit {
                       this.form.value.individualEmailAddress, this.form.value.individualMobileNumber)
 
                       this.individualBookingInformation$.subscribe(res => console.log(res))
+    this.disableLoaders(); 
   }
 
+  cancelTestOutcome(): void{
+    this.individualBookingInformation$ = null;
+    this.form.reset();
+  }
+
+  setTestOutcome = (individualLabId: number, selectedOutcome: string): void => {
+    console.log({individualLabId, selectedOutcome})
+  
+  }
 }

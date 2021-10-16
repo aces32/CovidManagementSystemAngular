@@ -20,6 +20,7 @@ export class AdministratorComponent implements OnInit {
   locationModelData = [''];
   locationData = [];
   form: FormGroup;
+
   constructor(private locationService: LocationService,
     private administratorService: AdministratorService,
     private toastr: ToastrService) { }
@@ -61,13 +62,11 @@ export class AdministratorComponent implements OnInit {
 
 
   submitForm(){
-    console.log(JSON.stringify(this.form.value))
-    if (this.form.invalid) {
-      return this.form.markAllAsTouched();
-    }
+    this.form.markAllAsTouched();
+    
     this.showLoaders();
 
-    var allocateBookingSpaceRequest: AllocateBookingSpaceRequest = {
+    const allocateBookingSpaceRequest: AllocateBookingSpaceRequest = {
       capacity: this.form.value.capacity,
       bookingDates: this.form.value.bookingDates,
       locationID: this.form.value.location
@@ -86,6 +85,7 @@ export class AdministratorComponent implements OnInit {
       });
 
     })
+
   }
 
 }

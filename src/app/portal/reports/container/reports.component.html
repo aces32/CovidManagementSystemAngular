@@ -8,8 +8,8 @@
           <div class="col-md-12">
             <div class="card">
               <div class="card-header card-header-primaryW">
-                <h2 class="card-title">Book Covid Test</h2>
-                <p class="card-category">Individual details</p>
+                <h2 class="card-title">Bookings Reports</h2>
+                <p class="card-category">Get booking reports</p>
               </div>
               <div class="card-body">
                 <form method="POST" [formGroup]="form" (ngSubmit)="submitForm()" >
@@ -38,13 +38,41 @@
                         </div>
                       </div>
 
-
                   <button class="btn btn-primary pull-right pd-10">
                     Get Report
                     <i class="fa fa-spinner fa-spin fs-22 float-r" *ngIf="showLoader"></i>
                   </button>
                   <div class="clearfix"></div>
                 </form>
+
+                <div class="row pd-10" *ngIf="bookingReports$ != null">
+                    <div class="col-md-12">
+                        <table class="table">
+                            <thead class="thead-dark">
+                              <tr>
+                                <th scope="col">Booking Dates</th>
+                                <th scope="col">Total Space Allocated</th>
+                                <th scope="col">Total capacity</th>
+                                <th scope="col">Location</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr *ngFor="let bookingReport of bookingReports$ | async">
+                                <td>{{bookingReport.bookingDates}}</td>
+                                <td>{{bookingReport.capacity}}</td>
+                                <td>{{bookingReport.spaceAllocated}}</td>
+                                <td>{{bookingReport.location.locationName}}</td>
+                                <td>
+                                    <button class="btn btn-primary pull-right pd-3 mg-5" (click)="viewIndividualData(bookingReport)">
+                                        View booked Individual data
+                                        <i class="fa fa-spinner fa-spin fs-22 float-r" *ngIf="showLoader"></i>
+                                      </button>
+                                </td>
+                              </tr>
+                          </table>
+                          
+                    </div>
+                  </div>
               </div>
             </div>
           </div>
