@@ -1,0 +1,53 @@
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+    <h1 class="h2">Reports</h1>
+  </div>
+
+  <div class="view-portfolio">
+    <div class="container-fluid">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="card">
+              <div class="card-header card-header-primaryW">
+                <h2 class="card-title">Book Covid Test</h2>
+                <p class="card-category">Individual details</p>
+              </div>
+              <div class="card-body">
+                <form method="POST" [formGroup]="form" (ngSubmit)="submitForm()" >
+
+                      <div class="row pd-10">
+                        <div class="col-md-12">
+                          <div class="form-group">
+                            <label class="bmd-label-floating">Booking Start Date</label>
+                            <input type="date" formControlName="bookingStartDates" class="form-control">
+                            <div class="small alert alert-danger" *ngIf="bookingStartDates.touched && bookingStartDates.invalid">
+                                <span *ngIf="!!bookingStartDates.errors.required">please select booking start date</span>
+                                </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="row pd-10">
+                        <div class="col-md-12">
+                          <div class="form-group">
+                            <label class="bmd-label-floating">Booking End Date</label>
+                            <input type="date" formControlName="bookingEndDates" class="form-control">
+                            <div class="small alert alert-danger" *ngIf="bookingEndDates.touched && bookingEndDates.invalid">
+                                <span *ngIf="!!bookingEndDates.errors.required">please select booking end date</span>
+                                </div>
+                          </div>
+                        </div>
+                      </div>
+
+
+                  <button class="btn btn-primary pull-right pd-10">
+                    Get Report
+                    <i class="fa fa-spinner fa-spin fs-22 float-r" *ngIf="showLoader"></i>
+                  </button>
+                  <div class="clearfix"></div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+  </div>

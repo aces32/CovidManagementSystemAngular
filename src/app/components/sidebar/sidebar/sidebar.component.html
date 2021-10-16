@@ -1,0 +1,44 @@
+
+<div class="container-fluid">
+    <div class="row">
+      <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
+        <div class="sidebar-sticky pt-3">
+          <ul class="nav flex-column">
+            <li class="nav-item">
+              <a class="nav-link" routerLink="/portal/administrator">
+  
+                  <i class="fa fa-address-book icon icon-color-orange"></i>
+                  <span style="margin-left: 20px">Administrator</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" routerLink = "/portal/individuals">
+                <i class="fa fa-user icon icon-color-orange"></i>
+                <span style="margin-left: 20px">Individual</span>
+              </a>
+            </li>
+  
+            <li class="nav-item">
+              <a class="nav-link" routerLink="/portal/individualLabs" >
+                <i class="fa fa-flask icon icon-color-orange"></i>
+                <span style="margin-left: 20px">Labs</span>
+              </a>
+            </li>  
+
+            <li class="nav-item">
+              <a class="nav-link" routerLink="/portal/reports" >
+                <i class="fa fa-book icon icon-color-orange"></i>
+                <span style="margin-left: 20px">Reports</span>
+              </a>
+            </li>  
+            
+          </ul>
+        </div>
+      </nav>
+      <!-- Main Content -->
+      <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4">
+        <ng-content></ng-content>
+      </main>
+    </div>
+  </div>
+  

@@ -1,0 +1,52 @@
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+    <h1 class="h2">Update Individual Test Outcome</h1>
+  </div>
+
+  <div class="view-portfolio">
+    <div class="container-fluid">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="card">
+              <div class="card-header card-header-primaryW">
+                <h2 class="card-title">Set Individual test outcome</h2>
+                <p class="card-category">input individual details</p>
+              </div>
+              <div class="card-body">
+                <form method="POST" [formGroup]="form" (ngSubmit)="submitForm()">
+
+                  <div class="row pd-10">
+                    <div class="col-md-12">
+                      <div class="form-group">
+                        <label class="bmd-label-floating">Email</label>
+                        <input type="text" formControlName="individualEmailAddress" class="form-control" placeholder="input email address">
+                        <div class="small alert alert-danger" *ngIf="individualEmailAddress.touched && individualEmailAddress.invalid">
+                            <span *ngIf="!!individualEmailAddress.errors.required">please input your email address</span>
+                            </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="row pd-10">
+                    <div class="col-md-12">
+                      <div class="form-group">
+                        <label class="bmd-label-floating">Mobile Number</label>
+                        <input type="text" formControlName="individualMobileNumber" class="form-control" placeholder="input Mobilenumber">
+                        <div class="small alert alert-danger" *ngIf="individualMobileNumber.touched && individualMobileNumber.invalid">
+                            <span *ngIf="!!individualMobileNumber.errors.required">please input your mobile number date</span>
+                            </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <button class="btn btn-primary pull-right pd-10">
+                    Get Booking Details
+                    <i class="fa fa-spinner fa-spin fs-22 float-r" *ngIf="showLoader"></i>
+                  </button>
+                  <div class="clearfix"></div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+  </div>
