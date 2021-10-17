@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  BASE_URL:  'https://localhost:44386',
+  BASE_URL:  'https://covidmanagementportal.azurewebsites.net/',
   Location_API: '/api/Location',
   Administrator_API: '/api/Administrator',
   Individual_API: '/api/Individual',

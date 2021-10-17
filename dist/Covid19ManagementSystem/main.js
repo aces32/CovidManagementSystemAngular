@@ -27,7 +27,7 @@ __webpack_require__.r(__webpack_exports__);
 // The list of file replacements can be found in `angular.json`.
 const environment = {
     production: false,
-    BASE_URL: 'https://localhost:44386',
+    BASE_URL: 'https://covidmanagementportal.azurewebsites.net/',
     Location_API: '/api/Location',
     Administrator_API: '/api/Administrator',
     Individual_API: '/api/Individual',
