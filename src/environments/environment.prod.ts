@@ -6,3 +6,4 @@ export const environment = {
   Individual_API: '/api/Individual',
   IndividualLabs_API: '/api/IndividualLabs',
 };
+
