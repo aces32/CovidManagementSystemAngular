@@ -1,7 +1,7 @@
 describe('Allocate Booking space', () => {
     it('Log Allocation data', () => {
       cy.visit('https://covidpcrportal.netlify.app/');
-      cy.wait(2000)
+      cy.wait(3000)
       cy.get('#selectLocation').select('Lagos, Nigeria');
       cy.get('#capacity').type(500);
       cy.get('#bookingDates').type('2021-10-30');
