@@ -18,7 +18,7 @@
                     <div class="col-md-12">
                       <div class="form-group">
                         <label class="bmd-label-floating">Email</label>
-                        <input type="text" formControlName="individualEmailAddress" class="form-control" placeholder="input email address">
+                        <input type="text" formControlName="individualEmailAddress" class="form-control" placeholder="input email address" id="individualEmailAddress">
                         <div class="small alert alert-danger" *ngIf="individualEmailAddress.touched && individualEmailAddress.invalid">
                             <span *ngIf="!!individualEmailAddress.errors.required">please input your email address</span>
                             </div>
@@ -30,7 +30,7 @@
                     <div class="col-md-12">
                       <div class="form-group">
                         <label class="bmd-label-floating">Mobile Number</label>
-                        <input type="text" formControlName="individualMobileNumber" class="form-control" placeholder="input Mobilenumber">
+                        <input type="text" formControlName="individualMobileNumber" class="form-control" placeholder="input Mobilenumber" id="individualMobileNumber">
                         <div class="small alert alert-danger" *ngIf="individualMobileNumber.touched && individualMobileNumber.invalid">
                             <span *ngIf="!!individualMobileNumber.errors.required">please input your mobile number date</span>
                             </div>
@@ -38,7 +38,7 @@
                     </div>
                   </div>
 
-                  <button class="btn btn-primary pull-right pd-10">
+                  <button class="btn btn-primary pull-right pd-10" id="getBookingDetails">
                     Get Booking Details
                     <i class="fa fa-spinner fa-spin fs-22 float-r" *ngIf="showLoader"></i>
                   </button>
@@ -66,9 +66,9 @@
                               <td>{{individualBooking.individualMobileNumber}}</td>
                               <td>{{individualBooking.individualLab.testType}}</td>
                               <td>
-                                <select [(ngModel)]="selectedOutcome">
+                                <select [(ngModel)]="selectedOutcome" id="selectOutComes">
                                   <option disabled>Test outcome</option>
-                                  <option *ngFor="let selectedOutcome of selectedOutcomes">
+                                  <option *ngFor="let selectedOutcome of selectedOutcomes" >
                                      {{selectedOutcome.name}}
                                   </option>
                                </select>
@@ -78,7 +78,9 @@
                                   cancel
                                   <i class="fa fa-spinner fa-spin fs-22 float-r" *ngIf="showLoader"></i>
                                 </button>
-                                  <button class="btn btn-primary pull-right pd-3 mg-5" (click)="setTestOutcome(individualBooking.individualLab.individualLabId, selectedOutcome)">
+                                  <button class="btn btn-primary pull-right pd-3 mg-5" 
+                                  (click)="setTestOutcome(individualBooking.individualLab.individualLabId, selectedOutcome)"
+                                  id="setOutcome">
                                     Set Outcome
                                     <i class="fa fa-spinner fa-spin fs-22 float-r" *ngIf="showLoader"></i>
                                   </button>

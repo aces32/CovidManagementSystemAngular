@@ -28,7 +28,7 @@
                 <div class="col-md-12">
                   <div class="form-group">
                     <label class="bmd-label-floating">Location</label>
-                    <select formControlName="location" class="form-control">
+                    <select formControlName="location" class="form-control" id="selectLocation">
                       <option disabled>Location</option>
                       <option>Choose Location</option>
                       <option
@@ -59,6 +59,7 @@
                       type="number"
                       class="form-control"
                       placeholder="input capacity"
+                      id="capacity"
                     />
                     <div
                       class="small alert alert-danger"
@@ -80,6 +81,7 @@
                       type="date"
                       formControlName="bookingDates"
                       class="form-control"
+                      id="bookingDates"
                     />
                     <div
                       class="small alert alert-danger"
@@ -93,7 +95,7 @@
                 </div>
               </div>
 
-              <button class="btn btn-primary pull-right pd-10">
+              <button class="btn btn-primary pull-right pd-10" id="submiAllocate">
                 Allocate Booking
                 <i
                   class="fa fa-spinner fa-spin fs-22 float-r"

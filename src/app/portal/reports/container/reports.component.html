@@ -18,7 +18,7 @@
                         <div class="col-md-12">
                           <div class="form-group">
                             <label class="bmd-label-floating">Booking Start Date</label>
-                            <input type="date" formControlName="bookingStartDates" class="form-control">
+                            <input type="date" formControlName="bookingStartDates" class="form-control" id="bookingStartDates">
                             <div class="small alert alert-danger" *ngIf="bookingStartDates.touched && bookingStartDates.invalid">
                                 <span *ngIf="!!bookingStartDates.errors.required">please select booking start date</span>
                                 </div>
@@ -30,7 +30,7 @@
                         <div class="col-md-12">
                           <div class="form-group">
                             <label class="bmd-label-floating">Booking End Date</label>
-                            <input type="date" formControlName="bookingEndDates" class="form-control">
+                            <input type="date" formControlName="bookingEndDates" class="form-control" id="bookingEndDates">
                             <div class="small alert alert-danger" *ngIf="bookingEndDates.touched && bookingEndDates.invalid">
                                 <span *ngIf="!!bookingEndDates.errors.required">please select booking end date</span>
                                 </div>
@@ -38,7 +38,7 @@
                         </div>
                       </div>
 
-                  <button class="btn btn-primary pull-right pd-10">
+                  <button class="btn btn-primary pull-right pd-10" id="getReport">
                     Get Report
                     <i class="fa fa-spinner fa-spin fs-22 float-r" *ngIf="showLoader"></i>
                   </button>
@@ -63,7 +63,8 @@
                                 <td>{{bookingReport.spaceAllocated}}</td>
                                 <td>{{bookingReport.location.locationName}}</td>
                                 <td>
-                                    <button class="btn btn-primary pull-right pd-3 mg-5" (click)="triggerModal(modalData, bookingReport)">
+                                    <button class="btn btn-primary pull-right pd-3 mg-5" (click)="triggerModal(modalData, bookingReport)"
+                                    id="viewindividualData">
                                         View booked Individual data
                                         <i class="fa fa-spinner fa-spin fs-22 float-r" *ngIf="showLoader"></i>
                                       </button>
